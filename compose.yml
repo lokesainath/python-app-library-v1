@@ -16,7 +16,7 @@ services:
       - "5001:5001"
     networks:
       - mynet
-    depends on:
+    depends_on:
       - db
 
   books:
@@ -27,7 +27,7 @@ services:
       - "5002:5002"
     networks:
       - mynet
-    depends on:
+    depends_on:
       - db
 
   borrow:
@@ -38,7 +38,7 @@ services:
       - "5003:5003"
     networks:
       - mynet
-    depends on:
+    depends_on:
       - db
 
   frontend:
@@ -49,9 +49,9 @@ services:
       - "5000:5000"
     networks:
       - mynet
-    depends on:
+    depends_on:
       - auth
-      - book
+      - books
       - borrow
 
 networks:
