@@ -1,0 +1,49 @@
+services:
+  db:
+    image: lokesainathg/dockerpyapp:dbimage
+    deploy:
+      replicas: 1
+    ports:
+      - "3306:3306"
+    networks:
+      - mynet
+
+  auth:
+    image: lokesainathg/dockerpyapp:authimage
+    deploy:
+      replicas: 1
+    ports:
+      - "5001:5001"
+    networks:
+      - mynet
+
+  books:
+    image: lokesainathg/dockerpyapp:bookimage
+    deploy:
+      replicas: 1
+    ports:
+      - "5002:5002"
+    networks:
+      - mynet
+
+  borrow:
+    image: lokesainathg/dockerpyapp:borrowimage
+    deploy:
+      replicas: 1
+    ports:
+      - "5003:5003"
+    networks:
+      - mynet
+
+  frontend:
+    image: lokesainathg/dockerpyapp:appimage
+    deploy:
+      replicas: 1
+    ports:
+      - "5000:5000"
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    driver: overlay
