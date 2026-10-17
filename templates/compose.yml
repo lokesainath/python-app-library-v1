@@ -1,39 +1,44 @@
 services:
   db:
-    container_name: db
-    build: ./database/
+    image: lokesainathg/dockerpyapp:dbimage
+    deploy:
+      replicas: 1
     ports:
       - "3306:3306"
     networks:
       - mynet
 
   auth:
-    container_name: auth_service
-    build: ./auth/
+    image: lokesainathg/dockerpyapp:authimage
+    deploy:
+      replicas: 1
     ports:
       - "5001:5001"
     networks:
       - mynet
 
   books:
-    container_name: book_service
-    build: ./book/
+    image: lokesainathg/dockerpyapp:bookimage
+    deploy:
+      replicas: 1
     ports:
       - "5002:5002"
     networks:
       - mynet
 
   borrow:
-    container_name: borrow_service
-    build: ./borrow/
+    image: lokesainathg/dockerpyapp:borrowimage
+    deploy:
+      replicas: 1
     ports:
       - "5003:5003"
     networks:
       - mynet
 
   frontend:
-    container_name: frontend
-    build: ./
+    image: lokesainathg/dockerpyapp:appimage
+    deploy:
+      replicas: 1
     ports:
       - "5000:5000"
     networks:
@@ -42,4 +47,3 @@ services:
 networks:
   mynet:
     driver: overlay
-   
