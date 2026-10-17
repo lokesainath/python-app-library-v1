@@ -1,0 +1,46 @@
+```yaml
+services:
+  db:
+    container_name: db
+    build: ./database/
+    ports:
+      - "3306:3306"
+    networks:
+      - mynet
+
+  auth:
+    container_name: auth_service
+    build: ./auth/
+    ports:
+      - "5001:5001"
+    networks:
+      - mynet
+
+  books:
+    container_name: book_service
+    build: ./book/
+    ports:
+      - "5002:5002"
+    networks:
+      - mynet
+
+  borrow:
+    container_name: borrow_service
+    build: ./borrow/
+    ports:
+      - "5003:5003"
+    networks:
+      - mynet
+
+  frontend:
+    container_name: frontend
+    build: ./
+    ports:
+      - "5000:5000"
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    driver: overlay
+   
