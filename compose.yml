@@ -16,6 +16,8 @@ services:
       - "5001:5001"
     networks:
       - mynet
+    depends on:
+      - db
 
   books:
     image: lokesainathg/dockerpyapp:bookimage
@@ -25,6 +27,8 @@ services:
       - "5002:5002"
     networks:
       - mynet
+    depends on:
+      - db
 
   borrow:
     image: lokesainathg/dockerpyapp:borrowimage
@@ -34,6 +38,8 @@ services:
       - "5003:5003"
     networks:
       - mynet
+    depends on:
+      - db
 
   frontend:
     image: lokesainathg/dockerpyapp:appimage
@@ -43,6 +49,10 @@ services:
       - "5000:5000"
     networks:
       - mynet
+    depends on:
+      - auth
+      - book
+      - borrow
 
 networks:
   mynet:
